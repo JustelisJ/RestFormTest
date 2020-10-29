@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel-body">
+                <div class="row">
+                    <h2>All issues</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>Project name</th>
+                                <th>Tracker name</th>
+                                <th>Status id</th>
+                                <th>Priority id</th>
+                                <th>Subject</th>
+                                <th>Description</th>
+                                <th>Estimated hours</th>
+                            </tr>
+                            </thead>
+                            <!--/*@thymesVar id="issues" type="rest.api.test.model.issue.IssueData"*/-->
+                            <tr th:each="issue : ${issues.getIssues()}">
+                                <!--/*@thymesVar id="issue" type="rest.api.test.model.issue.Issue"*/-->
+                                <td th:text="${issue.getProject().name}">Project name</td>
+                                <td th:text="${issue.getTracker().name}">Tracker name</td>
+                                <td th:text="${issue.status_id}">Status id</td>
+                                <td th:text="${issue.priority_id}">Priority id</td>
+                                <td th:text="${issue.subject}">Subject</td>
+                                <td th:text="${issue.description}">Description</td>
+                                <td th:text="${issue.estimated_hours}">Estimated hours</td>
+                            </tr>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
